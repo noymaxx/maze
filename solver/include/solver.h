@@ -6,6 +6,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <string.h>
+#include <time.h>
 
 // ======== STRUCTS ===========
 
@@ -18,9 +19,17 @@ typedef struct {
 // Maze
 typedef struct {
   char *grid; // (* = free, X = wall, O = path)
-  int width; 
+  int width;
   int height;
 } Maze;
+
+// Performance statistics
+typedef struct {
+  double time_ms;           // execution time in milliseconds
+  int cells_visited;        // number of cells explored
+  int path_length;          // length of solution path (0 if no solution)
+  const char* algorithm;    // "BFS" or "A*"
+} SolverStats;
 
 // ========= MACROS ===========
 
@@ -46,10 +55,21 @@ bool validate_maze(const Maze* maze);
 
 // ======= ALGO FUNCTIONS ==========
 
-// solve bfs 
-bool solve_bfs(const Maze* maze);
+// solve bfs
+bool solve_bfs(Maze* maze);
+
+// solve bfs with stats
+bool solve_bfs_stats(Maze* maze, SolverStats* stats);
 
 // solve astar
 bool solve_astar(Maze* maze);
+
+// solve astar with stats
+bool solve_astar_stats(Maze* maze, SolverStats* stats);
+
+// ======= UTILITY FUNCTIONS ==========
+
+// print statistics
+void print_stats(const SolverStats* stats);
 
 #endif
