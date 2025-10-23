@@ -53,14 +53,12 @@ int main(int argc, char* argv[]) {
   // load maze from file
   maze = load_maze(maze_file);
   if (!maze) {
-    fprintf(stderr, "[ERROR] Failed to load maze\n");
     return 1;
   }
 
   // validate maze structure
   if (!validate_maze(maze)) {
     printf("no solution found\n");
-    printf("UNSOLVED :(\n");
     free_maze(maze);
     return 0;
   }
@@ -77,11 +75,9 @@ int main(int argc, char* argv[]) {
     // print result
     if (solved) {
       print_maze(maze);
-      printf("SOLVED :)\n");
       print_stats(&stats);
     } else {
       printf("no solution found\n");
-      printf("UNSOLVED :(\n");
       print_stats(&stats);
     }
   } else {
@@ -95,10 +91,8 @@ int main(int argc, char* argv[]) {
     // print result
     if (solved) {
       print_maze(maze);
-      printf("SOLVED :)\n");
     } else {
       printf("no solution found\n");
-      printf("UNSOLVED :(\n");
     }
   }
 

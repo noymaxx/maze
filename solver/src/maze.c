@@ -48,7 +48,6 @@ Maze *load_maze(const char *filename) {
   // open file
   fp = fopen(filename, "r");
   if (!fp) {
-    fprintf(stderr, "[ERROR]: Can't open file '%s'\n", filename);
     return NULL;
   }
 
